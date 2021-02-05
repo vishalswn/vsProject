@@ -1,0 +1,83 @@
+<div class="p-4">
+    <div class="container">
+        <div class="card">
+            <h4 class="card-header">Update Profile</h4>
+            <div class="card-body">
+				
+				<form  [formGroup]="updateform" (ngSubmit)="onSubmit()">
+					<div class="image-upload">
+						<label for="bannerimage">
+						 <img [src]="imgURL" class="image" *ngIf="imgURL" width="70" height="70" margin="0px auto"/>
+						</label>
+						<input type="file" id="bannerimage" formControlName="profile_pic" class="form-control" (change)="changeListener($event)" accept="image/*" [ngClass]="{ 'is-invalid': submitted && f.profile_pic.errors }" >
+						
+						<div *ngIf="submitted && f.profile_pic.errors" class="invalid-feedback">
+                            <div *ngIf="f.profile_pic.errors.required">First Name is required</div>
+                        </div>
+					  </div>
+					<div class="form-group">
+					    First name:<input type ="text" formControlName="first_name" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
+					     <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                            <div *ngIf="f.first_name.errors.required">First Name is required</div>
+                        </div>
+				    </div>
+				    <div class="form-group">
+					Last name:<input type="text" formControlName="last_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+						<div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                            <div *ngIf="f.last_name.errors.required">First Name is required</div>
+                        </div>
+					</div>
+				    <div class="form-group">
+					Email address:<input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+						<div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">First Name is required</div>
+                        </div>
+					</div>
+					<div class="form-group">       
+						Date of birth:<input type="date" formControlName="date_of_birth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.date_of_birth.errors }"><br>
+						 <div *ngIf="submitted && f.date_of_birth.errors" class="invalid-feedback">
+							 <div *ngIf="f.date_of_birth.errors.required">First Name is required</div>
+						 </div>
+					 </div>
+				    <div class="form-group">
+					Address:<input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+						<div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                            <div *ngIf="f.address.errors.required">Address is required</div>
+                        </div>
+					</div>
+					<div class="form-group">
+					    city:<input type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+						<div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+						   <div *ngIf="f.city.errors.required">City is required</div>
+							  <div *ngIf="f.city.errors.confirmedValidator">Password and Confirm Password must be match.</div>
+						</div>
+					</div>
+				    <div class="form-group">
+					state:<select formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+						<div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                            <div *ngIf="f.state.errors.required">Gender is required</div>
+                        </div>
+							 <option value="" selected >Select Gender</option>
+				             <option selected value="MP">M.P.</option>
+				             <option value="RJ">Rajsthan</option>
+				             <option value="UP">Up</option>
+				           </select>
+
+					</div>
+					<div class="form-group">       
+						ZipCode<input type="number" formControlName="zip_code" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }"><br>
+						 <div *ngIf="submitted && f.zip_code.errors" class="invalid-feedback">
+							 <div *ngIf="f.zip_code.errors.required">First Name is required</div>
+						 </div>
+					 </div>
+				    <!--<div class="form-group">
+					Profile image:<input #event type="file" formControlName="profile_pic" class="form-control" (change)="changeListener($event)" accept="image/*" [ngClass]="{ 'is-invalid': submitted && f.profile_pic.errors }">
+					</div>-->
+					
+					<button type="submit" class="btn btn-primary">Update</button>&nbsp;&nbsp;
+					<button routerLink="../home" class="btn btn-primary">Back to home</button>&nbsp;&nbsp;
+				</form>      
+            </div>
+        </div>
+    </div>
+</div>

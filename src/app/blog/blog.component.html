@@ -1,0 +1,31 @@
+<h3>Blog Detail</h3> 
+<div class="d-flex justify-content-center"> 
+<div class="spinner-border" role="status" > 
+    <span class="sr-only" id="loading">Loading...</span> 
+</div> 
+</div> 
+<table class="table" id='tab'> 
+    <thead> 
+    <tr>  
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>   
+        <th scope="col">Content</th> 
+        <th scope="col">Image</th>
+        <th scope="col">Action</th>
+
+    </tr> 
+    </thead> 
+    <tbody> 
+    <tr *ngFor=" let item of data"> 
+        <td>{{item.id}}</td>
+        <td>{{item.title}}</td>  
+        <td>{{item.content}}</td>  
+        <td><img src="{{item.image}}" width="50" height="60"></td>   
+        <td>
+            <button routerLink="/update-blog" (click)="updateRow(item.id)" class="btn btn-primary">Update Profile</button>&nbsp;
+            <button class="btn btn-danger" (click)="deleteRow(item.id)">Delete</button>
+        </td>
+    </tr> 
+    </tbody> 
+</table>
+<button routerLink="../home" class="btn btn-primary">Back to home</button>&nbsp;&nbsp;

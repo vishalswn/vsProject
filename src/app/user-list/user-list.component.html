@@ -1,0 +1,30 @@
+<h3>login user detail</h3> 
+<div class="d-flex justify-content-center"> 
+<div class="spinner-border" role="status" > 
+    <span class="sr-only" id="loading">Loading...</span> 
+</div> 
+</div> 
+<table class="table" id='tab'> 
+    <thead> 
+    <tr>  
+        <th scope="col">Fname</th> 
+        <th scope="col">Lname</th> 
+        <th scope="col">Email</th> 
+        <th scope="col">Image</th>
+        <th scope="col">Action</th>
+    </tr> 
+    </thead> 
+    <tbody> 
+    <tr *ngIf="data"> 
+    	<td>{{data.first_name}}</td> 
+        <td>{{data.last_name}}</td>  
+        <td>{{data.email}}</td> 
+        <td><img src="{{data.profile_pic}}" width="50" height="60"></td>   
+        <td>
+            <button routerLink="../update-profile" class="btn btn-primary">Update Profile</button>
+            <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+        </td>
+    </tr> 
+    </tbody> 
+</table>
+<button routerLink="../home" class="btn btn-primary">Back to home</button>&nbsp;&nbsp;

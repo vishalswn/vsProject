@@ -1,0 +1,80 @@
+<button   routerLink="/lodash">Lodash docs program</button>&nbsp;&nbsp;
+<button   routerLink="/chat">One to one chat</button>
+<div class="p-4">
+    <div class="container">
+        <div class="card">
+            <h4 class="card-header">Register</h4>
+            <div class="card-body">
+				
+				<form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+					<div class="image-upload">
+						<label for="bannerimage">
+						 <img [src] = "imgURL" class="image" *ngIf="imgURL" alt="" width="70" height="70" margin="0px auto"/>
+						</label>
+						<input type="file" id="bannerimage" formControlName="profile_pic" class="form-control" (change)="changeListener($event)" accept="image/*" [ngClass]="{ 'is-invalid': submitted && f.profile_pic.errors }" >
+						<div *ngIf="submitted && f.profile_pic.errors" class="invalid-feedback">
+                            <div *ngIf="f.profile_pic.errors.required">Image is required</div>
+                        </div>
+					  </div>
+					<div class="form-group">
+					    First name:<input type ="text" formControlName="first_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
+					     <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                            <div *ngIf="f.first_name.errors.required">First Name is required</div>
+                        </div>
+				    </div>
+				    <div class="form-group">
+					Last name:<input type="text" formControlName="last_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+						<div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                            <div *ngIf="f.last_name.errors.required">Last Name is required</div>
+                        </div>
+					</div>
+				    <div class="form-group">
+					Email address:<input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+						<div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                        </div>
+					</div>
+				    <div class="form-group">
+					Password:<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+						<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">password is required</div>
+                        </div>
+					</div>
+					<div class="form-group">
+						ConfirmPassword:<input type="password" formControlName="confirm_password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }">
+							<div *ngIf="submitted && f.confirm_password.errors" class="invalid-feedback">
+								<div *ngIf="f.confirm_password.errors.required">ConfirmPassword required</div>
+								<div *ngIf="f.confirm_password.errors.confirmedValidator">Password and Confirm Password must be match.</div>
+							</div>
+						</div>
+				    <div class="form-group">
+					    Gender:<select formControlName="gender" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+						
+							 <option value="" selected>Select Gender</option>
+				             <option value="0">Male</option>
+				             <option value="1">Female</option>
+				             <option value="2">Other</option>
+				           </select>
+						   <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                            <div *ngIf="f.gender.errors.required">Gender is required</div>
+                           </div>
+				    </div>
+				    <div class="form-group">       
+					Date of birth:<input type="date" formControlName="date_of_birth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.date_of_birth.errors }"><br>
+					<div *ngIf="submitted && f.date_of_birth.errors" class="invalid-feedback">
+						<div *ngIf="f.date_of_birth.errors.required">Date of Birth is required</div>
+					</div>
+					</div>
+					    
+					 
+				    <!--<div class="form-group">
+					Profile image:<input #event type="file" formControlName="profile_pic" class="form-control" (change)="changeListener($event)" accept="image/*" [ngClass]="{ 'is-invalid': submitted && f.profile_pic.errors }">
+					</div>-->
+					
+					<button type="submit" class="btn btn-primary">Register</button>&nbsp;&nbsp;
+					<a href="" routerLink="../login" class="btn btn-primary">Login</a>
+				</form>      
+            </div>
+        </div>
+    </div>
+</div>
