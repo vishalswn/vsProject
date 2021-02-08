@@ -31,8 +31,7 @@ export class ChatmessageComponent implements OnInit {
 
   ngOnInit(): void {
     this.actRoute.paramMap.subscribe(params => {
-      this.email = params.get('email');
-      debugger
+      this.email = params.get('id');
     });
   }
 
