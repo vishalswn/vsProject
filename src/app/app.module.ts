@@ -33,6 +33,7 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { ChatComponent } from './chat/chat.component';
+import { ChatmessageComponent } from './chatmessage/chatmessage.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +61,8 @@ import { ChatComponent } from './chat/chat.component';
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    ChatComponent
+    ChatComponent,
+    ChatmessageComponent
   ],
   imports: [
     BrowserModule,

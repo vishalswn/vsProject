@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Observable, Subject } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
@@ -11,8 +11,6 @@ export class SocketService {
   key:any;
   constructor(public readonly http: HttpClient) {
 
-    
-
    }
   
   connectSocket() {
@@ -21,7 +19,7 @@ export class SocketService {
     // let headers = new HttpHeaders().set('Authorization', `Token ${token}`);
     //const subject = new WebSocket("ws://192.168.0.133:8000/ws/");
 
-   this.webSocket = new WebSocket(`ws://192.168.1.11:8000/socket/?token=${token}`);
+   this.webSocket = new WebSocket(`ws://192.168.0.133:8000/socket/?token=${token}`);
     
    //console.log(subject);
    this.webSocket.onopen = (e: any) => {
@@ -47,11 +45,12 @@ export class SocketService {
       //type: "receive group message",
       message: message,
     };
-    //debugger
+    
     
     // Send the msg object as a JSON-formatted string.
     this.webSocket.send(JSON.stringify(msg));
-    localStorage.setItem('key', JSON.stringify(msg));
+    
+   // localStorage.setItem('key', JSON.stringify(msg));
   }
 
 getMessages = () =>  {
@@ -60,11 +59,6 @@ getMessages = () =>  {
           //    observer.next(message);
          // });
  // });
-this.msg = localStorage.getItem('key');
-
-//console.log();
-//debugger
-
 }
 }
 

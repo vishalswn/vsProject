@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormComponent } from './form/form.component';
+//import { FormComponent } from './form/form.component';
 import { environment } from './../environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -87,6 +87,11 @@ export class HttpService {
     let token = localStorage.getItem("token");    
     let headers = new HttpHeaders().set('Authorization', `Token ${token}`);
     return this.http.delete<T>(`${environment.apiUrl}${endpoint}` , {headers: headers});
+  }
+  public getuserlist<T,D>(endpoint:string):Observable<T>{
+    let token = localStorage.getItem("token");    
+    let headers = new HttpHeaders().set('Authorization', `Token ${token}`);
+    return this.http.get<T>(`${environment.chatUrl}${endpoint}` , {headers: headers});
   }
 
 }

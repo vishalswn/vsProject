@@ -17,6 +17,7 @@ import { UpdateBlogComponent } from './update-blog/update-blog.component';
 import { HomeComponent } from './home/home.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { ChatComponent } from './chat/chat.component';
+import { ChatmessageComponent } from './chatmessage/chatmessage.component';
 const routes: Routes = [
 	{ path: "", redirectTo: "/register", pathMatch: "full" },
     { path: "home", component: FormComponent,canActivate:[ActivateGuard] },
@@ -34,7 +35,9 @@ const routes: Routes = [
     { path:"update-blog", component:UpdateBlogComponent,canActivate:[ActivateGuard]},
     { path:"dashboard", component:HomeComponent,canActivate:[ActivateGuard]},
     { path:"recipe", component:RecipesComponent,canActivate:[ActivateGuard]},
-    { path:"chat", component:ChatComponent},
+    { path:"chat", component:ChatComponent,canActivate:[ActivateGuard]},
+    { path:"chatmessage/:id", component:ChatmessageComponent,canActivate:[ActivateGuard]},
+    
     { path: '**', redirectTo: '' },
 ];
 

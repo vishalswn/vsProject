@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://192.168.1.11:8000/api/',
-  authUrl: 'http://192.168.1.11:8000/auth/'
+  apiUrl: 'http://192.168.0.133:8000/api/',
+  authUrl: 'http://192.168.0.133:8000/auth/',
+  chatUrl: 'http://192.168.0.133:8000/chat/api/'
 };
 
 /*
