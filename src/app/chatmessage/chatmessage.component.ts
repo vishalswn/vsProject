@@ -27,7 +27,8 @@ export class ChatmessageComponent implements OnInit {
     private readonly httpService: HttpService,
     private alertService: AlertService,
     private actRoute: ActivatedRoute
-  ) { }
+  ) {   
+  }
 
   ngOnInit(): void {
     this.actRoute.paramMap.subscribe(params => {
@@ -45,11 +46,9 @@ export class ChatmessageComponent implements OnInit {
        // this.loading = true;
       // console.log(this.form.value);
       //this.messageList = this.form.value;
-      this.socketService.sendText(this.form.value.msg);
-      //debugger 
-      
+      this.socketService.sendText(this.form.value.msg,this.email);
+      //debugger  
       this.form.reset();
       
   }
-
 }

@@ -1,17 +1,26 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+//import { Observable } from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Observable, Subject } from "rxjs";
+import { HttpService } from 'src/app/http.service';
+import {  AlertService } from 'src/app/_service';
+import { ActivatedRoute } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
+  email:string;
   msg:any;
   subject:any;
   webSocket: any;
   key:any;
-  constructor(public readonly http: HttpClient) {
-
+  sendmsg:any;
+  constructor(public readonly http: HttpClient,private actRoute: ActivatedRoute) {
+    
    }
+   ngOnInit(): void {
+    
+  }
   
   connectSocket() {
     this.key = localStorage.getItem('key');
@@ -39,18 +48,16 @@ export class SocketService {
     };
   }
 
-  sendText(message: string) {
+  sendText(message: string,email: string) {
+    
     // Construct a msg object containing the data the server needs to process the message from the chat client.
     var msg = {
       //type: "receive group message",
       message: message,
-    };
-    
-    
+      recipient:email
+    }; 
     // Send the msg object as a JSON-formatted string.
     this.webSocket.send(JSON.stringify(msg));
-    
-   // localStorage.setItem('key', JSON.stringify(msg));
   }
 
 getMessages = () =>  {

@@ -46,18 +46,17 @@ export class ChatComponent implements OnInit {
   }
   get f() { return this.form.controls; }
 
-  sendMessage() {
+  //sendMessage() {
         // stop here if form is invalid
-       if (this.form.invalid) {
-            return;
-        }
+     //  if (this.form.invalid) {
+       //     return;
+      //  }
        // this.loading = true;
       // console.log(this.form.value);
       //this.messageList = this.form.value;
-      this.socketService.sendText(this.form.value.msg);
-      //debugger 
+      //this.socketService.sendText(this.form.value.msg);
       
-      this.form.reset();
+     // this.form.reset();
       
-  }
+  //}
 }
