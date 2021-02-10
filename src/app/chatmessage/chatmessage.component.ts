@@ -16,11 +16,14 @@ export class ChatmessageComponent implements OnInit {
   form = new FormGroup({
     msg: new FormControl(''),
   });
+  message: string;
+  messages: string[] = [];
   email:string;
   newMessage: string;
   messageList:any = [];
   getmessageList:any=[];
   userlist:any=[];
+  msg:any=[];
   constructor(
     public socketService: SocketService,
     private formBuilder: FormBuilder,
@@ -33,6 +36,12 @@ export class ChatmessageComponent implements OnInit {
   ngOnInit(): void {
     this.actRoute.paramMap.subscribe(params => {
       this.email = params.get('id');
+    });  
+
+    this.socketService.getMessages().subscribe((message: string) => {
+     this.messageList.push(message);
+     this.msg = message;
+     debugger
     });
   }
 
@@ -51,4 +60,6 @@ export class ChatmessageComponent implements OnInit {
       this.form.reset();
       
   }
+
+  
 }

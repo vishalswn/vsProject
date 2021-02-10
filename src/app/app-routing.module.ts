@@ -36,7 +36,7 @@ const routes: Routes = [
     { path:"dashboard", component:HomeComponent,canActivate:[ActivateGuard]},
     { path:"recipe", component:RecipesComponent,canActivate:[ActivateGuard]},
     { path:"chat", component:ChatComponent,canActivate:[ActivateGuard]},
-    { path:"chatmessage/:id", component:ChatmessageComponent,canActivate:[ActivateGuard]},
+    { path:"chat/:id", component:ChatComponent,canActivate:[ActivateGuard]},
     
     { path: '**', redirectTo: '' },
 ];
