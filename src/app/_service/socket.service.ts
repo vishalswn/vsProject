@@ -29,13 +29,12 @@ export class SocketService {
     // let headers = new HttpHeaders().set('Authorization', `Token ${token}`);
     //const subject = new WebSocket("ws://192.168.0.133:8000/ws/");
 
-   this.webSocket = new WebSocket(`ws://192.168.0.133:8001/socket/?token=${token}`);
+   this.webSocket = new WebSocket(`ws://192.168.1.8:8000/socket/?token=${token}`);
     
    //console.log(subject);
    this.webSocket.onopen = (e: any) => {
   		console.log('connnected');
     };
-
     //this.webSocket.onmessage = (e: any) => {
     //  console.log('messages ->', JSON.parse(e.data));
    // };
