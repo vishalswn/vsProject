@@ -17,11 +17,13 @@ export class ChatComponent implements OnInit {
   });
   email:any;
   newMessage: string;
-  messageList:any = [];
+  messageList = [];
   getmessageList:any=[];
   userlist:any=[];
   msg:any=[];
   msg1:any =[];
+  text:string;
+  loginid:any;
   constructor(public socketService: SocketService,
     private formBuilder: FormBuilder,
     private readonly httpService: HttpService,
@@ -44,17 +46,10 @@ export class ChatComponent implements OnInit {
     });
     this.socketService.getMessages().subscribe((message: string) => {
       this.messageList.push(message);
-      
-      //this.msg = message;
-      this.msg1 = {
-        message,
-        recipient:this.email
-      }; 
-     // alert(JSON.stringify(this.msg1));
-      //debugger
-      //alert(this.msg1.message.message);
-
      });
+     this.loginid = localStorage.getItem('loginuser');
+     //this.loginid = this.email
+     //debugger
   }
   get f() { return this.form.controls; }
 
