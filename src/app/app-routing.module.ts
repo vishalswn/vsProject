@@ -18,6 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatmessageComponent } from './chatmessage/chatmessage.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 const routes: Routes = [
 	{ path: "", redirectTo: "/register", pathMatch: "full" },
     { path: "home", component: FormComponent,canActivate:[ActivateGuard] },
@@ -38,7 +39,8 @@ const routes: Routes = [
     { path:"chat", component:ChatComponent,canActivate:[ActivateGuard]},
     { path:"chat/:id", component:ChatComponent,canActivate:[ActivateGuard]},
     
-    { path: '**', redirectTo: '' },
+    //{ path: '**', redirectTo: '' },
+    {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

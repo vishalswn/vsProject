@@ -93,5 +93,10 @@ export class HttpService {
     let headers = new HttpHeaders().set('Authorization', `Token ${token}`);
     return this.http.get<T>(`${environment.chatUrl}${endpoint}` , {headers: headers});
   }
+  public sendmsg<T,D>(endpoint:string,data:D):Observable<T>{
+    let token = localStorage.getItem("token");    
+    let headers = new HttpHeaders().set('Authorization', `Token ${token}`);
+    return this.http.post<T>(`${environment.chatUrl}${endpoint}`,data , {headers: headers});
+  }
 
 }

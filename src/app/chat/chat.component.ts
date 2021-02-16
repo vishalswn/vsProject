@@ -21,6 +21,7 @@ export class ChatComponent implements OnInit {
   getmessageList:any=[];
   userlist:any=[];
   msg:any=[];
+  sendmsg:any=[];
   msg1:any =[];
   text:string;
   loginid:any;
@@ -30,14 +31,11 @@ export class ChatComponent implements OnInit {
     private alertService: AlertService,
     private actRoute: ActivatedRoute
     ) {
-
-      this.httpService.getuserlist('user/').subscribe((data: any) => {
-        this.userlist = data;
-        
-        }, error => {
-          this.alertService.error('Error');
-      });
-    
+      this.httpService.getuserlist('userlist/').subscribe((data: any) => {
+       this.userlist = data;  
+       }, error => {
+         this.alertService.error('Error');
+      }); 
    }
 
   ngOnInit(): void {
@@ -46,10 +44,13 @@ export class ChatComponent implements OnInit {
     });
     this.socketService.getMessages().subscribe((message: string) => {
       this.messageList.push(message);
+      console.log(message);
      });
+
      this.loginid = localStorage.getItem('loginuser');
-     //this.loginid = this.email
-     //debugger
+     this.loginid = this.email
+     
+
   }
   get f() { return this.form.controls; }
 
@@ -58,11 +59,18 @@ export class ChatComponent implements OnInit {
    if (this.form.invalid) {
         return;
     }
-   // this.loading = true;
-  // console.log(this.form.value);
-  //this.messageList = this.form.value;
+    let uploadForm = new FormData();
+    uploadForm.append('message', this.form.value.msg);
+    uploadForm.append('email', this.email);
+      this.httpService.sendmsg('send/',uploadForm).subscribe((data: any) => {
+      this.sendmsg = data;  
+      
+      console.log(this.sendmsg);
+     }, error => {
+        this.alertService.error('Error');
+     });
+
   this.socketService.sendText(this.form.value.msg,this.email);
-  //debugger  
   this.form.reset();
   
 }

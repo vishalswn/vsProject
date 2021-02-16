@@ -38,11 +38,11 @@ export class ChatmessageComponent implements OnInit {
       this.email = params.get('id');
     });  
 
-    this.socketService.getMessages().subscribe((message: string) => {
-     this.messageList.push(message);
-     this.msg = message;
-     debugger
-    });
+   // this.socketService.getMessages().subscribe((message: string) => {
+   //  this.messageList.push(message);
+   //  this.msg = message;
+   //  debugger
+   // });
   }
 
   get f() { return this.form.controls; }

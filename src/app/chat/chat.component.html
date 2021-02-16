@@ -55,6 +55,10 @@
                     </div>
                 </div>
                 <div class="card-body msg_card_body" >
+                    <div class="d-flex justify-content-start mb-4" *ngFor="let item of messageList" >
+                        
+                    </div>
+                    
                     <div class="d-flex justify-content-end mb-4"  *ngFor="let item of messageList">
                         <!-- left side msg -->
                         <ng-container *ngIf="loginid==email">

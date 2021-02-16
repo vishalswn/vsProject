@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   apiUrl: 'http://192.168.1.8:8000/api/',
   authUrl: 'http://192.168.1.8:8000/auth/',
-  chatUrl: 'http://192.168.1.8:8000/chat/api/'
+  chatUrl: 'http://192.168.1.8:8000/drf_messaging/'
 };
 
 /*

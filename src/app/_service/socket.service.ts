@@ -31,13 +31,13 @@ export class SocketService {
 
    this.webSocket = new WebSocket(`ws://192.168.1.8:8000/socket/?token=${token}`);
     
-   //console.log(subject);
+   //console.log(this.webSocket);
    this.webSocket.onopen = (e: any) => {
   		console.log('connnected');
     };
-    //this.webSocket.onmessage = (e: any) => {
-    //  console.log('messages ->', JSON.parse(e.data));
-   // };
+   this.webSocket.onmessage = (e: any) => {
+     console.log('messages ->', JSON.parse(e.data));
+   };
 
     this.webSocket.onerror = (e: any) => {
     	console.log('error');
@@ -48,26 +48,25 @@ export class SocketService {
     };
   }
   public getMessages = () => {
-    return Observable.create((observer) => {
+   return Observable.create((observer) => {
       this.webSocket.onmessage = (e: any) => {
-        console.log('messages ->', JSON.parse(e.data));
+       console.log('messages ->', JSON.parse(e.data));
         observer.next(JSON.parse(e.data));
-      
+        //debugger
       };
-    });
+   });
   }
-
-
   sendText(message: string,email: string) {
     // Construct a msg object containing the data the server needs to process the message from the chat client.
-    var msg = {
+   var msg = {
       //type: "receive group message",
-      body: message,
-      recipient:email
-    }; 
+      command:'join_chat',
+      message: message,
+      receiver:email,
+   }; 
     // Send the msg object as a JSON-formatted string.
-    this.webSocket.send(JSON.stringify(msg));
-  }
+   this.webSocket.send(JSON.stringify(msg));
+ }
 
 
 }
