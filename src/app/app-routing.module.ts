@@ -37,7 +37,7 @@ const routes: Routes = [
     { path:"dashboard", component:HomeComponent,canActivate:[ActivateGuard]},
     { path:"recipe", component:RecipesComponent,canActivate:[ActivateGuard]},
     { path:"chat", component:ChatComponent,canActivate:[ActivateGuard]},
-    { path:"chat/:id", component:ChatComponent,canActivate:[ActivateGuard]},
+    { path:"chat/:id/:email", component:ChatComponent,canActivate:[ActivateGuard]},
     
     //{ path: '**', redirectTo: '' },
     {path: '**', component: PageNotFoundComponent}

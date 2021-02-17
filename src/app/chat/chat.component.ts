@@ -15,7 +15,9 @@ export class ChatComponent implements OnInit {
   form = new FormGroup({
     msg: new FormControl(''),
   });
+  id:number;
   email:any;
+  paramid:any;
   newMessage: string;
   messageList = [];
   getmessageList:any=[];
@@ -40,38 +42,47 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.actRoute.paramMap.subscribe(params => {
-      this.email = params.get('id');
+      this.paramid = params.get('id');
+      this.email = params.get('email');
+      //debugger
     });
     this.socketService.getMessages().subscribe((message: string) => {
       this.messageList.push(message);
       console.log(message);
      });
 
-     this.loginid = localStorage.getItem('loginuser');
-     this.loginid = this.email
-     
+     this.loginid = JSON.parse(localStorage.getItem('loginid'));
+    //  this.loginid = this.email;
 
   }
   get f() { return this.form.controls; }
-
   sendMessage() {
     // stop here if form is invalid
    if (this.form.invalid) {
         return;
     }
-    let uploadForm = new FormData();
-    uploadForm.append('message', this.form.value.msg);
-    uploadForm.append('email', this.email);
-      this.httpService.sendmsg('send/',uploadForm).subscribe((data: any) => {
-      this.sendmsg = data;  
-      
-      console.log(this.sendmsg);
-     }, error => {
-        this.alertService.error('Error');
-     });
-
-  this.socketService.sendText(this.form.value.msg,this.email);
+   let uploadForm = new FormData();
+     uploadForm.append('message', this.form.value.msg);
+      //uploadForm.append('receiver', this.email);
+      uploadForm.append('receiver', this.paramid);
+    // this.httpService.sendmsg('send/',uploadForm).subscribe((data: any) => {
+    //  this.sendmsg = data;  
+    //  this.messageList.push(data);
+   //  }, error => {
+   //     this.alertService.error('Error');
+   //  });
+  this.socketService.sendText(this.form.value.msg,this.paramid);
   this.form.reset();
   
 }
+ getMessage(){
+      //get message from database
+     // console.log('ok');
+      this.httpService.getmsg('inbox/?limit=10').subscribe((data: any) => {
+          this.messageList = data.results;
+         //debugger
+        }, error => {
+           this.alertService.error('Error');
+            });
+  }
 }

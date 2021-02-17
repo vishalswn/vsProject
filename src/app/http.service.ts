@@ -99,4 +99,10 @@ export class HttpService {
     return this.http.post<T>(`${environment.chatUrl}${endpoint}`,data , {headers: headers});
   }
 
+  public getmsg<T,D>(endpoint: string):Observable<T>{
+    let token = localStorage.getItem("token");    
+    let headers = new HttpHeaders().set('Authorization', `Token ${token}`);
+    return this.http.get<T>(`${environment.chatUrl}${endpoint}`, {headers: headers});
+  }
+
 }

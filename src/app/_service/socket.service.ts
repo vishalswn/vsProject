@@ -4,23 +4,23 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from "rxjs";
 import { HttpService } from 'src/app/http.service';
 import {  AlertService } from 'src/app/_service';
-import { ActivatedRoute } from '@angular/router';
+//import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
   email:string;
+  paramid:any;
   msg:any;
   subject:any;
   webSocket: any;
   key:any;
   sendmsg:any;
-  constructor(public readonly http: HttpClient,private actRoute: ActivatedRoute) {
-    
+  constructor(public readonly http: HttpClient) {  
    }
    ngOnInit(): void {
-    
+     
   }
   
   connectSocket() {
@@ -35,9 +35,7 @@ export class SocketService {
    this.webSocket.onopen = (e: any) => {
   		console.log('connnected');
     };
-   this.webSocket.onmessage = (e: any) => {
-     console.log('messages ->', JSON.parse(e.data));
-   };
+  
 
     this.webSocket.onerror = (e: any) => {
     	console.log('error');
@@ -52,7 +50,6 @@ export class SocketService {
       this.webSocket.onmessage = (e: any) => {
        console.log('messages ->', JSON.parse(e.data));
         observer.next(JSON.parse(e.data));
-        //debugger
       };
    });
   }
@@ -60,7 +57,7 @@ export class SocketService {
     // Construct a msg object containing the data the server needs to process the message from the chat client.
    var msg = {
       //type: "receive group message",
-      command:'join_chat',
+      command:'null',
       message: message,
       receiver:email,
    }; 
