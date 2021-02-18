@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit {
   email:any;
   paramid:any;
   newMessage: string;
-  messageList = [];
+  messageList:any = [];
   getmessageList:any=[];
   userlist:any=[];
   msg:any=[];
@@ -27,6 +27,7 @@ export class ChatComponent implements OnInit {
   msg1:any =[];
   text:string;
   loginid:any;
+  soketmsg:any;
   constructor(public socketService: SocketService,
     private formBuilder: FormBuilder,
     private readonly httpService: HttpService,
@@ -46,9 +47,10 @@ export class ChatComponent implements OnInit {
       this.email = params.get('email');
       //debugger
     });
-    this.socketService.getMessages().subscribe((message: string) => {
-      this.messageList.push(message);
-      console.log(message);
+    this.socketService.getMessages().subscribe((data: any) => {
+    this.messageList.push(data);
+    //this.newMessage = message;
+     debugger 
      });
 
      this.loginid = JSON.parse(localStorage.getItem('loginid'));
@@ -65,12 +67,13 @@ export class ChatComponent implements OnInit {
      uploadForm.append('message', this.form.value.msg);
       //uploadForm.append('receiver', this.email);
       uploadForm.append('receiver', this.paramid);
-    // this.httpService.sendmsg('send/',uploadForm).subscribe((data: any) => {
-    //  this.sendmsg = data;  
-    //  this.messageList.push(data);
-   //  }, error => {
-   //     this.alertService.error('Error');
-   //  });
+    this.httpService.sendmsg('send/',uploadForm).subscribe((data: any) => {
+    this.sendmsg = data;  
+   // this.messageList.push(data);
+    //debugger
+    }, error => {
+     this.alertService.error('Error');
+     });
   this.socketService.sendText(this.form.value.msg,this.paramid);
   this.form.reset();
   
@@ -78,9 +81,10 @@ export class ChatComponent implements OnInit {
  getMessage(){
       //get message from database
      // console.log('ok');
-      this.httpService.getmsg('inbox/?limit=10').subscribe((data: any) => {
+      this.httpService.getmsg('chats/?limit=10').subscribe((data: any) => {
           this.messageList = data.results;
-         //debugger
+         // debugger
+         //  this.messageList.push(data.results);
         }, error => {
            this.alertService.error('Error');
             });
