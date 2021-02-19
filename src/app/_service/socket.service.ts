@@ -29,7 +29,7 @@ export class SocketService {
     // let headers = new HttpHeaders().set('Authorization', `Token ${token}`);
     //const subject = new WebSocket("ws://192.168.0.133:8000/ws/");
 
-   this.webSocket = new WebSocket(`ws://192.168.0.133:8000/socket/?token=${token}`);
+   this.webSocket = new WebSocket(`ws://192.168.1.15:8000/socket/?token=${token}`);
     
    //console.log(this.webSocket);
    this.webSocket.onopen = (e: any) => {

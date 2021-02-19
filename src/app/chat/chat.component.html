@@ -18,7 +18,7 @@
                             <span class="online_icon"></span>
                         </div>
 
-                        <div class="user_info" (click)="getMessage()" [routerLink]="['/chat', item.id,item.email]">
+                        <div class="user_info" (click)="getMessage(item.id,item.email)">
                             <span>{{item.email}}</span>
                             <p> is online</p>
                         </div>
@@ -38,7 +38,7 @@
                             <span class="online_icon"></span>
                         </div>
                         <div class="user_info">
-                            <span>{{chatwith}}{{email}}</span>
+                            <span>{{chatwith}}{{getemail}}</span>
                             <!--<p>1767 Messages</p>-->
                         </div>
                         

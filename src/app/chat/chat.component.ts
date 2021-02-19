@@ -17,11 +17,10 @@ export class ChatComponent implements OnInit {
   form = new FormGroup({
     msg: new FormControl(''),
   });
-
   imgURL: any;
   chatwith:string;
   id:number;
-  email:any;
+  paramemail:any;
   paramid:any;
   newMessage: string;
   messageList:any = [];
@@ -33,37 +32,59 @@ export class ChatComponent implements OnInit {
   text:string;
   loginid:any;
   soketmsg:any;
+  getemail:any;
+
+
   constructor(public socketService: SocketService,
     private formBuilder: FormBuilder,
     private readonly httpService: HttpService,
     private alertService: AlertService,
     private actRoute: ActivatedRoute
     ) {
-      this.httpService.getuserlist('userlist/').subscribe((data: any) => {
+      this.httpService.getuserlist('users/').subscribe((data: any) => {
        this.userlist = data;  
        }, error => {
          this.alertService.error('Error');
       }); 
    }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.actRoute.paramMap.subscribe(params => {
       this.paramid = params.get('id');
-      this.email = params.get('email');
+      this.paramemail = params.get('email');
       
       //debugger
     });
     this.socketService.getMessages().subscribe((data: any) => {
     this.messageList.push(data);
     //this.newMessage = message;
-     debugger 
+     //debugger 
      });
 
      this.loginid = JSON.parse(localStorage.getItem('loginid'));
     //  this.loginid = this.email;
 
   }
+
   get f() { return this.form.controls; }
+
+   getMessage(id,email){
+      this.getemail = email;
+      this.paramid = id;
+      this.edited = true;
+      //get message from database
+      this.chatwith ='Chat with';
+      this.imgURL ='https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg';
+      this.httpService.getmsg(`messages/?recipient_email=${this.getemail}`).subscribe((data: any) => {
+         this.messageList = data;
+         // debugger
+         console.log(this.messageList);
+         //  this.messageList.push(data.results);
+        }, error => {
+           this.alertService.error('Error');
+       });
+  }
+
   sendMessage() {
     // stop here if form is invalid
    if (this.form.invalid) {
@@ -84,18 +105,5 @@ export class ChatComponent implements OnInit {
   this.form.reset();
   
 }
- getMessage(){
-      this.edited = true;
-      //get message from database
-      this.chatwith ='Chat with';
-      this.imgURL ='https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg';
-      this.httpService.getmsg('chats/?limit=10').subscribe((data: any) => {
-          this.messageList = data.results;
-         // debugger
-         console.log(this.messageList);
-         //  this.messageList.push(data.results);
-        }, error => {
-           this.alertService.error('Error');
-            });
-  }
+
 }
