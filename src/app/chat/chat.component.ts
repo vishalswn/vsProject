@@ -12,9 +12,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+  public edited = false;
+
   form = new FormGroup({
     msg: new FormControl(''),
   });
+
+  imgURL: any;
+  chatwith:string;
   id:number;
   email:any;
   paramid:any;
@@ -45,6 +50,7 @@ export class ChatComponent implements OnInit {
     this.actRoute.paramMap.subscribe(params => {
       this.paramid = params.get('id');
       this.email = params.get('email');
+      
       //debugger
     });
     this.socketService.getMessages().subscribe((data: any) => {
@@ -79,11 +85,14 @@ export class ChatComponent implements OnInit {
   
 }
  getMessage(){
+      this.edited = true;
       //get message from database
-     // console.log('ok');
+      this.chatwith ='Chat with';
+      this.imgURL ='https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg';
       this.httpService.getmsg('chats/?limit=10').subscribe((data: any) => {
           this.messageList = data.results;
          // debugger
+         console.log(this.messageList);
          //  this.messageList.push(data.results);
         }, error => {
            this.alertService.error('Error');
