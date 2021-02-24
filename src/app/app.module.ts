@@ -35,6 +35,7 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { ChatComponent } from './chat/chat.component';
 import { ChatmessageComponent } from './chatmessage/chatmessage.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ShoppingEditComponent,
     ChatComponent,
     ChatmessageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ReactiveFormComponent
   ],
   imports: [
     BrowserModule,

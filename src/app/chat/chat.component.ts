@@ -32,7 +32,7 @@ export class ChatComponent implements OnInit {
   text:string;
   loginid:any;
   soketmsg:any;
-  getemail:any;
+  getemail:string;
 
 
   constructor(public socketService: SocketService,
@@ -49,6 +49,9 @@ export class ChatComponent implements OnInit {
    }
 
    ngOnInit(): void {
+    this.form = this.formBuilder.group({
+	    msg: ['', Validators.required]
+	});
     this.actRoute.paramMap.subscribe(params => {
       this.paramid = params.get('id');
       this.paramemail = params.get('email');
@@ -77,7 +80,7 @@ export class ChatComponent implements OnInit {
       this.imgURL ='https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg';
       this.httpService.getmsg(`messages/?recipient_email=${this.getemail}`).subscribe((data: any) => {
          this.messageList = data;
-         // debugger
+          debugger
          console.log(this.messageList);
          //  this.messageList.push(data.results);
         }, error => {

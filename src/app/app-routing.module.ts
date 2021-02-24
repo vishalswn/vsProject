@@ -19,6 +19,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatmessageComponent } from './chatmessage/chatmessage.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 const routes: Routes = [
 	{ path: "", redirectTo: "/register", pathMatch: "full" },
     { path: "home", component: FormComponent,canActivate:[ActivateGuard] },
@@ -38,6 +39,7 @@ const routes: Routes = [
     { path:"recipe", component:RecipesComponent,canActivate:[ActivateGuard]},
     { path:"chat", component:ChatComponent,canActivate:[ActivateGuard]},
     { path:"chat/:id/:email", component:ChatComponent,canActivate:[ActivateGuard]},
+    { path:"reactiveform", component:ReactiveFormComponent},
     
     //{ path: '**', redirectTo: '' },
     {path: '**', component: PageNotFoundComponent}
